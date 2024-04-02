@@ -1,0 +1,35 @@
+/* NavBar Background Color */
+.custom-bg {
+    background-color: #800000;
+    color: #fff;
+}
+
+/* Image Size */
+.logo {
+    width: 5%;
+    height: 5%;
+}
+
+/* NavBar Links */
+.navbar a {
+    color: #fff;
+}
+
+.navbar-brand:hover {
+    color: white !important;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar-secondary a {
+    color: #800000;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.navbar-secondary a:hover {
+    color: #800000 !important;
+}
