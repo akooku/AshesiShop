@@ -36,27 +36,18 @@
     border-top-left-radius: 5px;
 }
 
-/* Category Dropdown */
-.custom-dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    display: none;
-    float: none;
-    min-width: 10rem;
-    padding: 0.5rem 0;
-    margin: 0;
-    font-size: 1rem;
-    color: #212529;
-    text-align: left;
-    list-style: none;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 0;
-    transition: all 0.3s ease;
+/* Input Fields */
+.form-control:focus {
+    border-color: #800000;
+    box-shadow: none;
 }
 
-.custom-dropdown-menu.show {
-    display: block;
+.form-select:focus {
+    border-color: #800000;
+    box-shadow: none; 
+}
+
+.form-select option:hover {
+    background-color: #800000;
+    color: #fff;
 }

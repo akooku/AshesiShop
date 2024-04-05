@@ -1,3 +1,8 @@
+<!-- Include Connection File -->
+<?php
+include('settings/connection.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +62,7 @@
                         <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Total Price: 100/-</a>
+                        <a class="nav-link" href="#">Total Price: GHS 1000</a>
                     </li>
                 </ul>
             </div>
@@ -97,61 +102,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="assets/images/electronics/electronic3.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-custom-bg">Add to cart</a>
-                            <a href="#" class="btn btn-custom-bg-2">View more</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="assets/images/beauty/beauty3.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-custom-bg">Add to cart</a>
-                            <a href="#" class="btn btn-custom-bg-2">View more</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="assets/images/beauty/beauty2.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-custom-bg">Add to cart</a>
-                            <a href="#" class="btn btn-custom-bg-2">View more</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="assets/images/electronics/electronic1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-custom-bg">Add to cart</a>
-                            <a href="#" class="btn btn-custom-bg-2">View more</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="assets/images/fashion/fashion2.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-custom-bg">Add to cart</a>
-                            <a href="#" class="btn btn-custom-bg-2">View more</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="col-md-2 p-0">
@@ -160,23 +110,20 @@
                     <li class="nav-item category-custom-bg">
                         <a class="nav-link active" aria-current="page" href="#"><h4>Categories</h4></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-item" href="#">Beauty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-item" href="#">Electronics</a>
-                    </li>
-                    <li class="nav-item">
-                            <li><h6 class="dropdown-header">Fashion</h6></li>
-                            <li><a class="nav-link dropdown-item" href="#">Men's Fashion</a></li>
-                            <li><a class="nav-link dropdown-item" href="#">Women's Fashion</a></li>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-item" href="#">Sports</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-item" href="#">Accessories</a>
-                    </li>
+                    <?php
+                    
+                    $select_categories = "SELECT * FROM categories";
+                    $result_categories = mysqli_query($conn, $select_categories);
+                    
+                    while ($row_data = mysqli_fetch_array($result_categories)) {
+                        $category_name = $row_data['category_name'];
+                        $category_id = $row_data['category_id'];
+                        echo "<li class='nav-item'>
+                                <a class='nav-link dropdown-item' href='index.php?category=$category_id'>$category_name</a>
+                              </li>";
+                    };
+                    
+                    ?>
                 </ul>
         </div>
     </div>

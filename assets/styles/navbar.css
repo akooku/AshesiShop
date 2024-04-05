@@ -33,3 +33,13 @@
 .navbar-secondary a:hover {
     color: #800000 !important;
 }
+
+/* Alert Message */
+.alert {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
