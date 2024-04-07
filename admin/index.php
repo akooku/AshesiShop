@@ -60,7 +60,8 @@
                 <button><a href="" class="nav-link btn btn-custom-bg my-1">All Orders</a></button>
                 <button><a href="" class="nav-link btn btn-custom-bg my-1">All Payments</a></button>
                 <button><a href="" class="nav-link btn btn-custom-bg my-1">List Users</a></button>
-                <button><a href="" class="nav-link btn btn-custom-bg my-1">List Businesses</a></button>
+                <button><a href="" class="nav-link btn btn-custom-bg my-1">Pending Businesses</a></button>
+                <button><a href="" class="nav-link btn btn-custom-bg my-1">Approved Businesses</a></button>
                 <button><a href="" class="nav-link btn btn-custom-bg-2 my-1">Logout</a></button>
             </div>
         </div>

@@ -1,3 +1,12 @@
+/* Global Styles */
+a {
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: #fff;
+}
+
 /* NavBar Background Color */
 .custom-bg {
     background-color: #800000;
@@ -34,6 +43,11 @@
     color: #800000 !important;
 }
 
+/* Cart Number */
+.cart-items {
+    font-weight: bold; 
+}
+
 /* Alert Message */
 .alert {
     background-color: #f8d7da;
@@ -42,4 +56,55 @@
     padding: 1rem;
     border-radius: 0.25rem;
     margin-bottom: 1rem;
+}
+
+.alert-2 {
+    font-size: xx-large;
+    font-weight: 500;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 50%;
+    text-align: center;
+    display: none;
+}
+
+tr .alert-2 {
+    font-size: xx-large;
+    font-weight: 500;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 50%;
+    text-align: center;
+    display: none;
+}
+
+@keyframes flicker {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.alert-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    z-index: 1000;
 }

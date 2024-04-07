@@ -1,6 +1,7 @@
 <!-- Include Connection File -->
 <?php
 include('settings/connection.php');
+include('functions/common_fxn.php')
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +39,13 @@ include('settings/connection.php');
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="all_products.php">Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Businesses</a>
@@ -52,22 +56,27 @@ include('settings/connection.php');
                 </ul>
 
                 <!-- Search form -->
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search products" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Search</button>
+                <form class="d-flex m-auto" action="" method="GET">
+                    <input class="form-control me-2" type="search" placeholder="Search products" aria-label="Search" name="search_data">
+                    <input type="submit" value="Search" class="btn btn-outline-light btn-custom-bg" name="search_data_product">
                 </form>
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-cart-shopping"></i><sup>1</sup></a>
+                        <a class="nav-link" href="cart.php"><i class="fa-solid fa-cart-shopping"></i><sup><span class="cart-items"><?php getCartItems(); ?></span></sup></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Total Price: GHS 1000</a>
+                        <a class="nav-link" href="#">Total Price: GHS <?php getCartPrice(); ?></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- Calling Cart Function -->
+    <?php
+    addToCart();
+    ?>
 
     <!-- Secondary Navigation Bar -->
     <nav class="navbar navbar-secondary navbar-expand-lg">
@@ -84,25 +93,31 @@ include('settings/connection.php');
 
     <!-- Home Page -->
     <!-- Home Page Title -->
-    <h3 class="text-center">Popular Products</h3>
+     <?php if (!isset($_GET['search_data_product'])) {
+                echo "<h3 class='text-center'>Popular Products</h3>";
+            } ?>
 
     <!-- Home Page Content -->
-    <div class="row">
+    <div class="row px-2">
         <!-- Displaying Products -->
         <div class="col-md-10">
             <div class="row">
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img src="assets/images/beauty/beauty1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-custom-bg">Add to cart</a>
-                            <a href="#" class="btn btn-custom-bg-2">View more</a>
-                        </div>
-                    </div>
-                </div>
+
+            <!-- Fetching Products -->
+            <?php 
+            
+            if (isset($_GET['search_data_product'])) {
+                searchProduct();
+            } else {
+                fetchProducts();
+                getUniqueCategories();
+            }
+            
+            ?>
+
+            <!-- Row End -->
             </div>
+        <!-- Column End -->
         </div>
         <div class="col-md-2 p-0">
             <!-- Displaying Categories -->
@@ -110,20 +125,7 @@ include('settings/connection.php');
                     <li class="nav-item category-custom-bg">
                         <a class="nav-link active" aria-current="page" href="#"><h4>Categories</h4></a>
                     </li>
-                    <?php
-                    
-                    $select_categories = "SELECT * FROM categories";
-                    $result_categories = mysqli_query($conn, $select_categories);
-                    
-                    while ($row_data = mysqli_fetch_array($result_categories)) {
-                        $category_name = $row_data['category_name'];
-                        $category_id = $row_data['category_id'];
-                        echo "<li class='nav-item'>
-                                <a class='nav-link dropdown-item' href='index.php?category=$category_id'>$category_name</a>
-                              </li>";
-                    };
-                    
-                    ?>
+                    <?php getCategories(); ?>
                 </ul>
         </div>
     </div>
@@ -131,20 +133,14 @@ include('settings/connection.php');
     <!-- Home Page -->
 
     <!-- Footer -->
-    <div class="custom-bg p-3 text-center">
-        <p>All rights reserved ©- Designed by Ako Oku (82022025)</p>
-    </div>
-
+    <?php 
+    include("includes/footer.php"); 
+    ?>
     <!-- Footer -->
 
-    
-    <!-- Bootstrap JS Link -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="<KEY>" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="<KEY>" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="<KEY>" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Scripts -->
+    <?php
+    include("includes/scripts.php");
+    ?>
 </body>
 </html>

@@ -23,14 +23,14 @@ if(isset($_POST['insert_product'])) {
     $product_status = 'true';
 
     // Accessing images
-    $product_image1 = mysqli_real_escape_string($conn, $_FILES['product_image1']['name']);
-    $product_image2 = mysqli_real_escape_string($conn, $_FILES['product_image2']['name']);
-    $product_image3 = mysqli_real_escape_string($conn, $_FILES['product_image3']['name']);
+    $product_image1 = $_FILES['product_image1']['name'];
+    $product_image2 = $_FILES['product_image2']['name'];
+    $product_image3 = $_FILES['product_image3']['name'];
 
     // Accessing image tmp name
-    $product_image1_tmp = mysqli_real_escape_string($conn, $_FILES['product_image1']['tmp_name']);
-    $product_image2_tmp = mysqli_real_escape_string($conn, $_FILES['product_image2']['tmp_name']);
-    $product_image3_tmp = mysqli_real_escape_string($conn, $_FILES['product_image3']['tmp_name']);
+    $product_image1_tmp = $_FILES['product_image1']['tmp_name'];
+    $product_image2_tmp = $_FILES['product_image2']['tmp_name'];
+    $product_image3_tmp = $_FILES['product_image3']['tmp_name'];
 
     // Check empty condition
     if(empty($product_name) || empty($product_description) || empty($product_keywords) || empty($product_category) || empty($product_price) || empty($product_quantity) || empty($product_image1)) {
@@ -38,10 +38,17 @@ if(isset($_POST['insert_product'])) {
         exit();
     } else {
         // Store image
-        move_uploaded_file($product_image1_tmp, "../admin/product_images/$product_image1");
-        move_uploaded_file($product_image2_tmp, "../admin/product_images/$product_image2");
-        move_uploaded_file($product_image3_tmp, "../admin/product_images/$product_image3");
+        if(!empty($product_image1)) {
+            move_uploaded_file($product_image1_tmp, '../admin/product_images/' . $product_image1);
+        }
+        if(!empty($product_image2)) {
+            move_uploaded_file($product_image2_tmp, '../admin/product_images/' . $product_image2);
+        }
+        if(!empty($product_image3)) {
+            move_uploaded_file($product_image3_tmp, '../admin/product_images/' . $product_image3);
+        }        
 
+        // Insert product
         $insert_product = "INSERT INTO products (product_name, product_description, product_keywords, category_id, product_image1, product_image2, product_image3, product_price, product_quantity, date, status) VALUES ('$product_name','$product_description','$product_keywords','$product_category','$product_image1','$product_image2','$product_image3','$product_price',$product_quantity,NOW(),'$product_status')";
 
         // Execute the statement
@@ -92,7 +99,7 @@ if(isset($_POST['insert_product'])) {
              <!-- Product Keywords -->
              <div class="form-outline mb-4 w-50 m-auto">
                 <label class="form-label" for="product_keywords">Product Keywords</label>
-                <input type="text" id="product_keywords" placeholder="Enter product keywords" class="form-control mb-4" name="product_keywords" autocomplete="off" required>
+                <input type="text" id="product_keywords" placeholder="e.g. beauty, kit, skincare" class="form-control mb-4" name="product_keywords" autocomplete="off" required>
             </div>
 
             <!-- Categories -->
