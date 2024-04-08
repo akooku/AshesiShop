@@ -1,7 +1,7 @@
 <?php
 
 // Include Connection File
-include('settings/connection.php');
+// include('settings/connection.php');
 
 // Fetching products
 function fetchProducts() {
@@ -17,12 +17,12 @@ function fetchProducts() {
                     $product_id = $row['product_id'];
                     $product_name = $row['product_name'];
                     $product_description = $row['product_description'];
-                    $product_image1 = $row['product_image1'];
+                    $product_image = $row['product_image'];
                     $product_price = $row['product_price'];
                     $category_id = $row['category_id'];
                     echo "<div class='col-md-4 mb-2'>
                             <div class='card'>
-                                <img src='./admin/product_images/$product_image1' class='card-img-top' alt='$product_name'>
+                                <img src='./admin/product_images/$product_image' class='card-img-top' alt='$product_name'>
                                 <div class='card-body'>
                                     <h5 class='card-title'>$product_name</h5>
                                     <p class='card-text'>$product_description</p>
@@ -50,12 +50,12 @@ function getAllProducts() {
                     $product_id = $row['product_id'];
                     $product_name = $row['product_name'];
                     $product_description = $row['product_description'];
-                    $product_image1 = $row['product_image1'];
+                    $product_image = $row['product_image'];
                     $product_price = $row['product_price'];
                     $category_id = $row['category_id'];
                     echo "<div class='col-md-4 mb-2'>
                             <div class='card'>
-                                <img src='./admin/product_images/$product_image1' class='card-img-top' alt='$product_name'>
+                                <img src='./admin/product_images/$product_image' class='card-img-top' alt='$product_name'>
                                 <div class='card-body'>
                                     <h5 class='card-title'>$product_name</h5>
                                     <p class='card-text'>$product_description</p>
@@ -89,12 +89,12 @@ function getUniqueCategories() {
                     $product_id = $row['product_id'];
                     $product_name = $row['product_name'];
                     $product_description = $row['product_description'];
-                    $product_image1 = $row['product_image1'];
+                    $product_image = $row['product_image'];
                     $product_price = $row['product_price'];
                     $category_id = $row['category_id'];
                     echo "<div class='col-md-4 mb-2'>
                             <div class='card'>
-                                <img src='./admin/product_images/$product_image1' class='card-img-top' alt='$product_name'>
+                                <img src='./admin/product_images/$product_image' class='card-img-top' alt='$product_name'>
                                 <div class='card-body'>
                                     <h5 class='card-title'>$product_name</h5>
                                     <p class='card-text'>$product_description</p>
@@ -140,12 +140,12 @@ function searchProduct() {
             $product_id = $row['product_id'];
             $product_name = $row['product_name'];
             $product_description = $row['product_description'];
-            $product_image1 = $row['product_image1'];
+            $product_image = $row['product_image'];
             $product_price = $row['product_price'];
             $category_id = $row['category_id'];
             echo "<div class='col-md-4 mb-2'>
                     <div class='card'>
-                        <img src='./admin/product_images/$product_image1' class='card-img-top' alt='$product_name'>
+                        <img src='./admin/product_images/$product_image' class='card-img-top' alt='$product_name'>
                         <div class='card-body'>
                             <h5 class='card-title'>$product_name</h5>
                             <p class='card-text'>$product_description</p>
@@ -174,7 +174,7 @@ function viewProductDetails() {
                         $product_id = $row['product_id'];
                         $product_name = $row['product_name'];
                         $product_description = $row['product_description'];
-                        $product_image1 = $row['product_image1'];
+                        $product_image = $row['product_image'];
                         $product_price = $row['product_price'];
                         $category_id = $row['category_id'];
                         echo "<div>
@@ -182,7 +182,7 @@ function viewProductDetails() {
                         <div class='card mb-3'>
                             <div class='row g-0'>
                                 <div class='col-md-4'>
-                                    <img src='admin/product_images/$product_image1' class='img-fluid rounded-start' alt='$product_name'>
+                                    <img src='admin/product_images/$product_image' class='img-fluid rounded-start' alt='$product_name'>
                                 </div>
                                 <div class='col-md-8'>
                                     <div class='card-body'>

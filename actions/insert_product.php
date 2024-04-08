@@ -1,17 +1,6 @@
 <?php
 include('../settings/connection.php');
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     // Check if the content length exceeds the limit
-//     $contentLength = (int)$_SERVER['CONTENT_LENGTH'];
-//     $postMaxSize = (int)ini_get('post_max_size');
-//     if ($contentLength > $postMaxSize) {
-//         // Display an alert message
-//         echo '<div class="alert">The file(s) you are trying to upload exceeds the maximum allowed size.</div>';
-//         exit();
-//     }
-// }
-
 if(isset($_POST['insert_product'])) {
     // Sanitize user input
     $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
@@ -22,34 +11,21 @@ if(isset($_POST['insert_product'])) {
     $product_quantity = mysqli_real_escape_string($conn, $_POST['product_quantity']);
     $product_status = 'true';
 
-    // Accessing images
-    $product_image1 = $_FILES['product_image1']['name'];
-    $product_image2 = $_FILES['product_image2']['name'];
-    $product_image3 = $_FILES['product_image3']['name'];
+    // Accessing image
+    $product_image = $_FILES['product_image']['name'];
 
     // Accessing image tmp name
-    $product_image1_tmp = $_FILES['product_image1']['tmp_name'];
-    $product_image2_tmp = $_FILES['product_image2']['tmp_name'];
-    $product_image3_tmp = $_FILES['product_image3']['tmp_name'];
+    $product_image_tmp = $_FILES['product_image']['tmp_name'];
 
     // Check empty condition
-    if(empty($product_name) || empty($product_description) || empty($product_keywords) || empty($product_category) || empty($product_price) || empty($product_quantity) || empty($product_image1)) {
+    if(empty($product_name) || empty($product_description) || empty($product_keywords) || empty($product_category) || empty($product_price) || empty($product_quantity) || empty($product_image)) {
         echo '<div class="alert">Please fill all the fields.</div>';
         exit();
     } else {
         // Store image
-        if(!empty($product_image1)) {
-            move_uploaded_file($product_image1_tmp, '../admin/product_images/' . $product_image1);
-        }
-        if(!empty($product_image2)) {
-            move_uploaded_file($product_image2_tmp, '../admin/product_images/' . $product_image2);
-        }
-        if(!empty($product_image3)) {
-            move_uploaded_file($product_image3_tmp, '../admin/product_images/' . $product_image3);
-        }        
-
+        move_uploaded_file($product_image_tmp, '../admin/product_images/' . $product_image);
         // Insert product
-        $insert_product = "INSERT INTO products (product_name, product_description, product_keywords, category_id, product_image1, product_image2, product_image3, product_price, product_quantity, date, status) VALUES ('$product_name','$product_description','$product_keywords','$product_category','$product_image1','$product_image2','$product_image3','$product_price',$product_quantity,NOW(),'$product_status')";
+        $insert_product = "INSERT INTO products (product_name, product_description, product_keywords, category_id, product_image, product_price, product_quantity, date, status) VALUES ('$product_name','$product_description','$product_keywords','$product_category','$product_image','$product_price',$product_quantity,NOW(),'$product_status')";
 
         // Execute the statement
         if(mysqli_query($conn, $insert_product)) {
@@ -93,7 +69,7 @@ if(isset($_POST['insert_product'])) {
             <!-- Product Description -->
             <div class="form-outline mb-4 w-50 m-auto">
                 <label class="form-label" for="product_description">Product Description</label>
-                <input type="text" id="product_description" placeholder="Enter product description" class="form-control mb-4" name="product_description" autocomplete="off" required>
+                <textarea id="product_description" placeholder="Enter product description" class="form-control mb-4" name="product_description" autocomplete="off" required></textarea>
             </div>
 
              <!-- Product Keywords -->
@@ -120,22 +96,10 @@ if(isset($_POST['insert_product'])) {
                 </select>
             </div>
 
-            <!-- Product Image 1 -->
+            <!-- Product Image -->
             <div class="form-outline mb-4 w-50 m-auto">
-                <label class="form-label" for="product_image1">Product Image 1</label>
-                <input type="file" id="product_image1" class="form-control mb-4" name="product_image1" required>
-            </div>
-
-            <!-- Product Image 2 -->
-            <div class="form-outline mb-4 w-50 m-auto">
-                <label class="form-label" for="product_image2">Product Image 2</label>
-                <input type="file" id="product_image2" class="form-control mb-4" name="product_image2">
-            </div>
-
-            <!-- Product Image 3 -->
-            <div class="form-outline mb-4 w-50 m-auto">
-                <label class="form-label" for="product_image3">Product Image 3</label>
-                <input type="file" id="product_image3" class="form-control mb-4" name="product_image3">
+                <label class="form-label" for="product_image">Product Image</label>
+                <input type="file" id="product_image" class="form-control mb-4" name="product_image" required>
             </div>
 
             <!-- Product Price -->

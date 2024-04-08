@@ -1,5 +1,6 @@
 <!-- Include Connection File -->
 <?php
+session_start();
 include('settings/connection.php');
 include('functions/common_fxn.php')
 ?>
@@ -28,7 +29,7 @@ include('functions/common_fxn.php')
         <div class="container-fluid p-0">
             <!-- Navbar brand -->
             <img src="assets/images/logo.png" alt="Ashesi Logo" class="logo">
-            <a class="navbar-brand" href="#">Ashesi Shop</a>
+            <a class="navbar-brand" href="index.php">Ashesi Shop</a>
             
             <!-- Navbar toggler -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
@@ -42,7 +43,7 @@ include('functions/common_fxn.php')
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sign Up</a>
+                        <a class="nav-link" href="login/register.php">Sign Up</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="all_products.php">Products</a>
@@ -81,12 +82,28 @@ include('functions/common_fxn.php')
     <!-- Secondary Navigation Bar -->
     <nav class="navbar navbar-secondary navbar-expand-lg">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
+                    
+                    <?php
+                    if(!isset($_SESSION['username'])) {
+                        echo '<li class="nav-item">
                         <a class="nav-link" href="#">Welcome Guest</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
+                    </li>';
+                    } else {
+                        echo "<li class='nav-item'>
+                        <a class='nav-link' href='#'>Welcome, ".$_SESSION['username']."!</a>
+                    </li>";
+                    }
+
+                    if(!isset($_SESSION['username'])) {
+                        echo '<li class="nav-item">
+                            <a class="nav-link" href="login/login.php">Login</a>
+                        </li>';
+                    } else {
+                        echo '<li class="nav-item">
+                            <a class="nav-link" href="login/logout.php">Logout</a>
+                        </li>';
+                    }
+                    ?>
                 </ul>
     </nav>
     <!-- Navigation Bar -->

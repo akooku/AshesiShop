@@ -1,6 +1,7 @@
 <!-- Include Connection File -->
 <?php
-include('settings/connection.php');
+session_start();
+include('../settings/connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +17,8 @@ include('settings/connection.php');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/styles/navbar.css">
-    <link rel="stylesheet" href="assets/styles/product.css">
+    <link rel="stylesheet" href="../assets/styles/navbar.css">
+    <link rel="stylesheet" href="../assets/styles/product.css">
 
 </head>
 <body>
@@ -26,8 +27,8 @@ include('settings/connection.php');
     <nav class="navbar navbar-expand-lg navbar-dark custom-bg">
         <div class="container-fluid p-0">
             <!-- Navbar brand -->
-            <img src="assets/images/logo.png" alt="Ashesi Logo" class="logo">
-            <a class="navbar-brand" href="#">Ashesi Shop</a>
+            <img src="../assets/images/logo.png" alt="Ashesi Logo" class="logo">
+            <a class="navbar-brand" href="../index.php">Ashesi Shop</a>
             
             <!-- Navbar toggler -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
@@ -38,7 +39,7 @@ include('settings/connection.php');
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Sign Up</a>
@@ -60,19 +61,34 @@ include('settings/connection.php');
     <!-- Secondary Navigation Bar -->
     <nav class="navbar navbar-secondary navbar-expand-lg">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
+                    <?php
+                    if(!isset($_SESSION['username'])) {
+                        echo '<li class="nav-item">
                         <a class="nav-link" href="#">Welcome Guest</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
+                    </li>';
+                    } else {
+                        echo "<li class='nav-item'>
+                        <a class='nav-link' href='#'>Welcome, ".$_SESSION['username']."!</a>
+                    </li>";
+                    }
+
+                    if(!isset($_SESSION['username'])) {
+                        echo '<li class="nav-item">
+                            <a class="nav-link" href="login/login.php">Login</a>
+                        </li>';
+                    } else {
+                        echo '<li class="nav-item">
+                            <a class="nav-link" href="login/logout.php">Logout</a>
+                        </li>';
+                    }
+                    ?>
                 </ul>
     </nav>
     <!-- Navigation Bar -->
 
     <!-- Home Page -->
     <!-- Checkout Page Title -->
-    <h3 class='text-center'>Checkout Page</h3>;
+    <h3 class='text-center'>Checkout Page</h3>
 
     <!-- Home Page Content -->
     <div class="row px-1">
@@ -81,7 +97,7 @@ include('settings/connection.php');
             <div class="row">
                 <?php
                 if(!isset($_SESSION['username'])) {
-                    include('users/user_login.php');
+                    include('user_login.php');
                 } else {
                     include('payment.php');
                 }
@@ -97,13 +113,13 @@ include('settings/connection.php');
 
     <!-- Footer -->
     <?php 
-    include("includes/footer.php"); 
+    include("../includes/footer.php"); 
     ?>
     <!-- Footer -->
 
     <!-- Scripts -->
     <?php
-    include("includes/scripts.php");
+    include("../includes/scripts.php");
     ?>
 </body>
 </html>

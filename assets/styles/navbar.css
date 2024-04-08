@@ -1,4 +1,8 @@
 /* Global Styles */
+body {
+    overflow-x: hidden;
+}
+
 a {
     text-decoration: none !important;
 }
