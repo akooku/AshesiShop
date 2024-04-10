@@ -1,6 +1,6 @@
 <!-- Include Connection File -->
 <?php
-start_session();
+session_start();
 include('settings/connection.php');
 include('functions/common_fxn.php')
 ?>
@@ -81,29 +81,31 @@ include('functions/common_fxn.php')
 
     <!-- Secondary Navigation Bar -->
     <nav class="navbar navbar-secondary navbar-expand-lg">
-                    <?php
-                    if(!isset($_SESSION['username'])) {
-                        echo '<li class="nav-item">
+        <ul class="navbar-nav me-auto">
+            <?php
+            if(!isset($_SESSION['username'])) {
+                echo '<li class="nav-item">
                         <a class="nav-link" href="#">Welcome Guest</a>
                     </li>';
-                    } else {
-                        echo "<li class='nav-item'>
-                        <a class='nav-link' href='#'>Welcome, ".$_SESSION['username']."!</a>
-                    </li>";
-                    }
+            } else {
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="#">Welcome, '.$_SESSION['username'].'!</a>
+                    </li>';
+            }
 
-                    if(!isset($_SESSION['username'])) {
-                        echo '<li class="nav-item">
-                            <a class="nav-link" href="login/login.php">Login</a>
-                        </li>';
-                    } else {
-                        echo '<li class="nav-item">
-                            <a class="nav-link" href="login/logout.php">Logout</a>
-                        </li>';
-                    }
-                    ?>
-                </ul>
+            if(!isset($_SESSION['username'])) {
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="login/login.php">Login</a>
+                    </li>';
+            } else {
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="login/logout.php">Logout</a>
+                    </li>';
+            }
+            ?>
+        </ul>
     </nav>
+
     <!-- Navigation Bar -->
 
     <!-- Home Page -->
