@@ -1,4 +1,3 @@
-<!-- Include Connection File -->
 <?php
 session_start();
 include('settings/connection.php');
