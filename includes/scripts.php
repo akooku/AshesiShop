@@ -19,3 +19,4 @@
     <!-- Custom JS -->
     <script src="assets/scripts/alert.js"></script>
     <script src="assets/scripts/cart.js"></script>
+    <script src="../assets/scripts/register.js"></script>

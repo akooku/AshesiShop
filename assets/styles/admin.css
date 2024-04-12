@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+/* NavBar Background Color */
+.custom-bg {
+    background-color: #800000;
+    color: #fff;
+}
+
 /* Navigation Bar */
 .navbar-brand-container {
     padding: 0;
@@ -43,4 +49,102 @@ button {
 .footer {
     bottom: 0;
     width: 100%;
+}
+
+/* Table Style */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.custom-table thead {
+    background-color: #800000; 
+    color: #fff; 
+}
+
+.custom-table tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 192, 203, 0.5);
+}
+
+.table-container {
+    text-align: center;
+}
+
+.payment-body{
+    background-color: #f8bbd0;
+}
+
+/* Icon Color */
+.fa-pen-to-square, .fa-trash {
+    color: black;
+}
+
+/* Alert Message */
+.alert {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+.alert-2 {
+    font-size: xx-large;
+    font-weight: 500;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 50%;
+    text-align: center;
+    display: none;
+}
+
+tr .alert-2 {
+    font-size: xx-large;
+    font-weight: 500;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 50%;
+    text-align: center;
+    display: none;
+}
+
+@keyframes flicker {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.alert-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    z-index: 1000;
 }

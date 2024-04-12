@@ -42,9 +42,17 @@ include('functions/common_fxn.php')
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <?php
+                    if(!isset($_SESSION['username'])) {
+                        echo '<li class="nav-item">
                         <a class="nav-link" href="login/register.php">Sign Up</a>
-                    </li>
+                    </li>';
+                    } else {
+                        echo "<li class='nav-item'>
+                        <a class='nav-link' href='users/profile.php'>My Account</a>
+                    </li>";
+                    }
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="all_products.php">Products</a>
                     </li>

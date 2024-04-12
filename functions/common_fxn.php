@@ -158,6 +158,41 @@ function searchProduct() {
         }
 }
 
+function searchProductProfile() {
+    global $conn;
+
+        $search_data_value = $_GET['search_data'];
+        // Select data from database
+        $search_query = "SELECT * FROM products WHERE product_keywords LIKE '%$search_data_value%'";
+        $result_query = mysqli_query($conn, $search_query);
+        $num_of_rows = mysqli_num_rows($result_query);
+                
+                if ($num_of_rows == 0) { 
+                    echo '<div class="alert-2">No products found!</div>';
+                }
+
+        while ($row = mysqli_fetch_assoc($result_query)) {
+            $product_id = $row['product_id'];
+            $product_name = $row['product_name'];
+            $product_description = $row['product_description'];
+            $product_image = $row['product_image'];
+            $product_price = $row['product_price'];
+            $category_id = $row['category_id'];
+            echo "<div class='col-md-4 mb-2'>
+                    <div class='card'>
+                        <img src='../admin/product_images/$product_image' class='card-img-top' alt='$product_name'>
+                        <div class='card-body'>
+                            <h5 class='card-title'>$product_name</h5>
+                            <p class='card-text'>$product_description</p>
+                            <p class='card-text'>Price: GHS $product_price</p>
+                            <a href='index.php?add_to_cart=$product_id' class='btn btn-custom-bg'>Add to cart</a>
+                            <a href='product_details.php?product_id=$product_id' class='btn btn-custom-bg-2'>View more</a>
+                        </div>
+                    </div>
+                </div>";
+        }
+}
+
 // View Product Details
 function viewProductDetails() {
     global $conn;
@@ -281,6 +316,38 @@ function getCartPrice() {
         }
     }
     echo $total_price;
+}
+
+// Get User Order Details
+function getOrderDetails() {
+    global $conn;
+    $username = $_SESSION['username'];
+    $get_details = "SELECT * FROM users WHERE username = '$username'";
+    $result_details = mysqli_query($conn, $get_details);
+
+    while ($row_query = mysqli_fetch_array($result_details)) {
+        $user_id = $row_query['user_id'];
+        if (!isset($_GET['edit_account'])) {
+            if (!isset($_GET['my_orders'])) {
+                if (!isset($_GET['delete_account'])) {
+            $get_orders = "SELECT * FROM orders WHERE user_id = '$user_id' AND order_status = 'pending'";
+            $result_orders = mysqli_query($conn, $get_orders);
+            $num_of_rows = mysqli_num_rows($result_orders);
+            if ($num_of_rows > 0) {
+                echo "
+                <div class='text-center'>
+                <h3 class='mt-5 mb-3'>You have <span class='text-danger'>$num_of_rows</span> pending orders</h3>
+                <a href='profile.php?my_orders' class='btn btn-custom-bg'>Order Details</a>
+                </div>";
+            } else {
+                echo "
+                <div class='text-center'>
+                <h3 class='mt-5 mb-3'>You have <span class='text-danger'> 0 </span> pending orders</h3>
+                <a href='../index.php' class='btn btn-custom-bg'>Explore Products</a>
+                </div>";
+            }}}
+        }
+    }
 }
 
 ?>
