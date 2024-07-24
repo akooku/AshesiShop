@@ -54,7 +54,7 @@
                 </td>
                 <td><?php echo $product_status; ?></td>
                 <td><a href='index.php?edit_product=<?php echo $product_id; ?>'><i class='fa-solid fa-pen-to-square'></i></a></td>
-                <td><a href='index.php?delete_product=<?php echo $product_id; ?>'><i class='fa-solid fa-trash'></i></a></td>
+                <td><a href='index.php?delete_product=<?php echo $product_id; ?>' type='button' data-bs-toggle='modal' data-bs-target='#deleteModal'><i class='fa-solid fa-trash'></i></a></td>
             </tr>
             <?php
             }?>
@@ -63,3 +63,18 @@
     </table>
 </body>
 </html>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h4>Are you sure you want to delete this?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-custom-bg-2" data-bs-dismiss="modal">No</button>
+        <button type="button"><a href="index.php?delete_product=<?php echo $product_id; ?>" class="btn btn-custom-bg">Yes</a></button>
+      </div>
+    </div>
+  </div>
+</div>

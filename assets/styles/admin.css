@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 /* NavBar Background Color */
 .custom-bg {
     background-color: #800000;

@@ -61,7 +61,7 @@ include('../functions/common_fxn.php')
                 <button><a href="../actions/insert_product.php" class="nav-link btn btn-custom-bg my-1">Insert Products</a></button>
                 <button><a href="index.php?view_products" class="nav-link btn btn-custom-bg my-1">View Products</a></button>
                 <button><a href="index.php?insert_category" class="nav-link btn btn-custom-bg my-1">Insert Categories</a></button>
-                <button><a href="" class="nav-link btn btn-custom-bg my-1">View Categories</a></button>
+                <button><a href="index.php?view_categories" class="nav-link btn btn-custom-bg my-1">View Categories</a></button>
                 <button><a href="" class="nav-link btn btn-custom-bg my-1">All Orders</a></button>
                 <button><a href="" class="nav-link btn btn-custom-bg my-1">All Payments</a></button>
                 <button><a href="" class="nav-link btn btn-custom-bg my-1">List Users</a></button>
@@ -87,6 +87,15 @@ include('../functions/common_fxn.php')
         }
         if(isset($_GET['delete_product'])){
             include('../actions/delete_product.php');
+        }
+        if(isset($_GET['view_categories'])){
+            include('../actions/view_categories.php');
+        }
+        if(isset($_GET['edit_category'])){
+            include('../actions/edit_category.php');
+        }
+        if(isset($_GET['delete_category'])){
+            include('../actions/delete_category.php');
         }
         ?>
     </div>
